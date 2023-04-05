@@ -8,6 +8,11 @@
 3. Input the following commands (seperately) in your terminal to run tests using the Banyan Infrastructure website: 
     - npx playwright test banyanTestPass.spec.ts --headed
     - npx playwright test banyanTestFail.spec.ts --headed
+      
+4. After each command completes, you may review the test report manually by using the command:
+    - npx playwright show-report
+    - Note: Test Cases that experience failures should auto-run the above command by default. 
+
 
 
 
