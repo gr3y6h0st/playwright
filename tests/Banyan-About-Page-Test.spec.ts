@@ -8,5 +8,6 @@ test('test', async ({ page }) => {
   //Check to make sure the new page's URL contains the text: 'about'
   await expect(page).toHaveURL(/.*about/);
   //check for a header role that contains the Company Mission.
+  let companyMission = "Our mission is to accelerate the deployment of sustainable infrastructure projects everywhere.";
   const locator = page.getByRole('heading', { name: 'Our mission is to accelerate the deployment of sustainable infrastructure projects everywhere.' });
-  await expect(locator).toHaveText('Our mission is to accelerate the deployment of sustainable infrastructure projects everywhere.')});
+  await expect(locator).toHaveText(companyMission)});
