@@ -13,9 +13,9 @@ test('first', async ({ page }) => {
   //check for a header role that contains the Company Mission.
   let companyMission = "Our mission is to accelerate the deployment of sustainable infrastructure projects everywhere.";
   //use locator to find header w/ Company Mission Statement.
-  const locator = page.getByRole('heading', { name: 'Our mission is to accelerate the deployment of sustainable infrastructure projects everywhere.' });
+  const pageCompanyMission = page.getByRole('heading', { name: 'Our mission is to accelerate the deployment of sustainable infrastructure projects everywhere.' });
   //webFirst Assert company mission text on webpage vs companyMission value.
-  await expect(locator).toHaveText(companyMission)});
+  await expect(pageCompanyMission).toHaveText(companyMission)});
 
 test('second', async ({ page }) => {
   //navigate to Bayan Infrastructure home page.
@@ -25,4 +25,22 @@ test('second', async ({ page }) => {
   await page.getByRole('link', { name: 'Join Us' }).click();
   //test expect URL to have 'greenhouse'
   await expect(page).toHaveURL(/.*greenhouse/);
+  //click Departments Drop Down
+  await page.getByRole('link', { name: 'All Departments' }).click();
+  //Select Engineering filter
+  await page.locator('#select2-result-label-7').click();
+
+  //create locator based on role interest: job title "QA Engineer"
+  const resultsInterest = page.getByRole('link', {name: 'QA Engineer'});
+  const resultsJobTitle = "QA Engineer";
+
+  //Click and Load next page for QA Engineer Role from Results.
+  await page.getByRole('link', { name: 'QA Engineer' }).click();
+
+  //find QA Engineer header on new page.
+  const listingJobTitle = page.getByRole('heading', { name: 'QA Engineer' });
+
+  //Assert expectation for role clicked contains "QA Engineer".
+  await expect(listingJobTitle).toHaveText(resultsJobTitle);
+
 });
